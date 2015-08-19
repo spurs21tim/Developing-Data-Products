@@ -1,0 +1,118 @@
+library(shiny)
+library(datasets)
+
+cars <- mtcars
+car_names <- as.character(row.names(cars))
+car_names <- unlist(car_names)
+
+shinyServer(
+     function(input, output) {
+          output$prediction <- renderText({
+          data <- switch(input$var,
+                         "Mazda RX4" = cars$mpg[1]*0.425,
+                         "Mazda RX4 Wag"= cars$mpg[2]*0.425,
+                         "Datsun 710"= cars$mpg[3]*0.425,
+                         "Hornet 4 Drive"= cars$mpg[4]*0.425,
+                         "Hornet Sportabout"= cars$mpg[5]*0.425,
+                         "Valiant"= cars$mpg[6]*0.425,
+                         "Duster 360"= cars$mpg[7]*0.425,
+                         "Merc 240D"= cars$mpg[8]*0.425,
+                         "Merc 230" = cars$mpg[9]*0.425,
+                         "Merc 280"= cars$mpg[10]*0.425,
+                         "Merc 280C"= cars$mpg[11]*0.425,
+                         "Merc 450SE"= cars$mpg[12]*0.425,
+                         "Merc 450SL"  = cars$mpg[13]*0.425,
+                         "Merc 450SLC" = cars$mpg[14]*0.425,
+                         "Cadillac Fleetwood" = cars$mpg[15]*0.425,
+                         "Lincoln Continental"= cars$mpg[16]*0.425,
+                         "Chrysler Imperial"= cars$mpg[17]*0.425,
+                         "Fiat 128"   = cars$mpg[18]*0.425,
+                         "Honda Civic"  = cars$mpg[19]*0.425,
+                         "Toyota Corolla"= cars$mpg[20]*0.425,
+                         "Toyota Corona"= cars$mpg[21]*0.425,
+                         "Dodge Challenger"= cars$mpg[22]*0.425,
+                         "AMC Javelin"  = cars$mpg[23]*0.425,
+                         "Camaro Z28"  = cars$mpg[24]*0.425,
+                         "Pontiac Firebird" = cars$mpg[25]*0.425,
+                         "Fiat X1-9" = cars$mpg[26]*0.425,
+                         "Porsche 914-2" = cars$mpg[27]*0.425,
+                         "Lotus Europa" = cars$mpg[28]*0.425,
+                         "Ford Pantera L"  = cars$mpg[29]*0.425,
+                         "Ferrari Dino"    = cars$mpg[30]*0.425,
+                         "Maserati Bora" = cars$mpg[31]*0.425,
+                         "Volvo 142E" = cars$mpg[32]*0.425)
+          })
+          output$mpgvalue <- renderText({
+               data <- switch(input$var, 
+                              "Mazda RX4" = cars$mpg[1],
+                              "Mazda RX4 Wag"= cars$mpg[2],
+                              "Datsun 710"= cars$mpg[3],
+                              "Hornet 4 Drive"= cars$mpg[4],
+                              "Hornet Sportabout"= cars$mpg[5],
+                              "Valiant"= cars$mpg[6],
+                              "Duster 360"= cars$mpg[7],
+                              "Merc 240D"= cars$mpg[8],
+                              "Merc 230" = cars$mpg[9],
+                              "Merc 280"= cars$mpg[10],
+                              "Merc 280C"= cars$mpg[11],
+                              "Merc 450SE"= cars$mpg[12],
+                              "Merc 450SL"  = cars$mpg[13],
+                              "Merc 450SLC" = cars$mpg[14],
+                              "Cadillac Fleetwood" = cars$mpg[15],
+                              "Lincoln Continental"= cars$mpg[16],
+                              "Chrysler Imperial"= cars$mpg[17],
+                              "Fiat 128"   = cars$mpg[18],
+                              "Honda Civic"  = cars$mpg[19],
+                              "Toyota Corolla"= cars$mpg[20],
+                              "Toyota Corona"= cars$mpg[21],
+                              "Dodge Challenger"= cars$mpg[22],
+                              "AMC Javelin"  = cars$mpg[23],
+                              "Camaro Z28"  = cars$mpg[24],
+                              "Pontiac Firebird" = cars$mpg[25],
+                              "Fiat X1-9" = cars$mpg[26],
+                              "Porsche 914-2" = cars$mpg[27],
+                              "Lotus Europa" = cars$mpg[28],
+                              "Ford Pantera L"  = cars$mpg[29],
+                              "Ferrari Dino"    = cars$mpg[30],
+                              "Maserati Bora" = cars$mpg[31],
+                              "Volvo 142E" = cars$mpg[32])
+          }) 
+          output$carselected <- renderText({
+               data <- switch(input$var,
+                              "Mazda RX4" = car_names[1],
+                              "Mazda RX4 Wag"= car_names[2],
+                              "Datsun 710"= car_names[3],
+                              "Hornet 4 Drive"= car_names[4],
+                              "Hornet Sportabout"= car_names[5],
+                              "Valiant"= car_names[6],
+                              "Duster 360"= car_names[7],
+                              "Merc 240D"= car_names[8],
+                              "Merc 230" = car_names[9],
+                              "Merc 280"= car_names[10],
+                              "Merc 280C"= car_names[11],
+                              "Merc 450SE"= car_names[12],
+                              "Merc 450SL"  = car_names[13],
+                              "Merc 450SLC" = car_names[14],
+                              "Cadillac Fleetwood" = car_names[15],
+                              "Lincoln Continental"= car_names[16],
+                              "Chrysler Imperial"= car_names[17],
+                              "Fiat 128"   = car_names[18],
+                              "Honda Civic"  = car_names[19],
+                              "Toyota Corolla"= car_names[20],
+                              "Toyota Corona"= car_names[21],
+                              "Dodge Challenger"= car_names[22],
+                              "AMC Javelin"  = car_names[23],
+                              "Camaro Z28"  = car_names[24],
+                              "Pontiac Firebird" = car_names[25],
+                              "Fiat X1-9" = car_names[26],
+                              "Porsche 914-2" = car_names[27],
+                              "Lotus Europa" = car_names[28],
+                              "Ford Pantera L"  = car_names[29],
+                              "Ferrari Dino"    = car_names[30],
+                              "Maserati Bora" = car_names[31],
+                              "Volvo 142E" = car_names[32])
+                              
+          }) 
+          
+     }
+)
